@@ -13,9 +13,13 @@ public class ClickInput : MonoBehaviour
 
     void Update()
     {
-        if(Mouse.current.leftButton.isPressed == true)
+        if(Mouse.current.leftButton.isPressed == true || Mouse.current.leftButton.wasPressedThisFrame == true)
         {
             layerGridController.OnClick(Mouse.current.position.ReadValue());
+        }
+        else
+        {
+            layerGridController.HideBrush();
         }
     }
 }

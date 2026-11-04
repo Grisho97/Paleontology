@@ -1,36 +1,77 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LayerGridController : MonoBehaviour
 {
-    private int rawsCount = 0;
+    [SerializeField]
+    int radius;
+    [SerializeField, Range(1f, 100f)]
+    float autoClearPercent;
+    [SerializeField]
+    RectTransform brushPrefab;
+    [SerializeField]
+    RectTransform rawsParent;
+    RectTransform brush;
+    private bool isFinal = false;
+    private int removedRawsCount = 0;
     public RawImage[] raws;
+    public void HideBrush()
+    {
+        brush.gameObject.SetActive(false);
+    }
+    void ShowBrush(Vector2 clickPosition)
+    {
+        brush.position = clickPosition;
+        brush.gameObject.SetActive(true);
+    }
     void CheckFinal()
     {
-        if(rawsCount == raws.Length)
+        if(raws.Length == 0 || isFinal)
         {
-            Debug.Log("Final");
+            return;
+        }
+        float currentPrecent = 100f / (float)raws.Length * removedRawsCount;
+        if(currentPrecent >= autoClearPercent)
+        {
+            foreach(RawImage raw in raws)
+            {
+                raw.gameObject.SetActive(false);
+                isFinal = true;
+            }
+            Debug.Log("final");
         }
     }
     public void OnClick(Vector2 clickPosition)
     {
+        if(isFinal)
+        {
+            return;
+        }
+        ShowBrush(clickPosition);
         foreach(RawImage raw in raws)
         {
             if(raw.gameObject.activeSelf == false)
             {
                 continue;
             }
-            if(RectTransformUtility.RectangleContainsScreenPoint(raw.rectTransform, clickPosition))
+            Vector2 rawCenterOnScreen = RectTransformUtility.WorldToScreenPoint(null, raw.rectTransform.position);
+            if(Vector2.Distance(clickPosition, rawCenterOnScreen) <= radius)
             {
                 raw.gameObject.SetActive(false);
-                rawsCount++;
-                CheckFinal();
+                removedRawsCount++;
             }
         }
+        CheckFinal();
     }
     void Start()
     {
         raws = gameObject.GetComponentsInChildren<RawImage>(true);
+        if(brushPrefab != null)
+        {
+            brush = Instantiate(brushPrefab, rawsParent);
+            HideBrush();
+        }
     }
 
     void Update()
