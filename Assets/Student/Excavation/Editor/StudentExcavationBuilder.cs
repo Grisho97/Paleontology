@@ -49,7 +49,9 @@ namespace Paleontology.Student.Editor
             Object.DestroyImmediate(preview.gameObject);
             var logic = new GameObject("Student Excavation Controller");
             var grid = logic.AddComponent<StudentSoilGrid>();
-            grid.Configure(preparedGrid.GetComponent<RectTransform>());
+            var indicator = AssetDatabase.LoadAssetAtPath<GameObject>(
+                "Assets/Student/Excavation/Prefabs/DigRadiusIndicator.prefab");
+            grid.Configure(preparedGrid.GetComponent<RectTransform>(), indicator.GetComponent<RectTransform>());
             var input = logic.AddComponent<StudentDigInput>(); input.Configure(grid);
             logic.AddComponent<StudentDigHUD>().Configure(grid, input, Label("Progress label"), reset);
             EditorSceneManager.SaveScene(scene, ScenePath);

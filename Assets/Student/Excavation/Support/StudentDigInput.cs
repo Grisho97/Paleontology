@@ -11,14 +11,25 @@ namespace Paleontology.Student
         void Update()
         {
             // На следующем занятии обрабатываем только один палец или мышь.
-            if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
+            var touch = Touchscreen.current?.primaryTouch;
+            if (touch != null && (touch.press.isPressed || touch.press.wasPressedThisFrame))
             {
-                grid.EraseAt(Touchscreen.current.primaryTouch.position.ReadValue());
+                grid.EraseAt(touch.position.ReadValue());
             }
-            else if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+            else if (Mouse.current != null &&
+                     (Mouse.current.leftButton.isPressed || Mouse.current.leftButton.wasPressedThisFrame))
             {
                 grid.EraseAt(Mouse.current.position.ReadValue());
             }
+            else
+            {
+                grid.HideBrush();
+            }
+        }
+
+        void OnDisable()
+        {
+            if (grid != null) grid.HideBrush();
         }
     }
 }
