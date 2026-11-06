@@ -12,8 +12,10 @@ public class LayerGridController : MonoBehaviour
     RectTransform brushPrefab;
     [SerializeField]
     RectTransform rawsParent;
-    RectTransform brush;
-    private bool isFinal = false;
+    [SerializeField]
+    PikedTool pikedTool1;
+    RectTransform brush = new RectTransform();
+    public bool isFinal = false;
     private int removedRawsCount = 0;
     public RawImage[] raws;
     public void HideBrush()
@@ -42,9 +44,9 @@ public class LayerGridController : MonoBehaviour
             Debug.Log("final");
         }
     }
-    public void OnClick(Vector2 clickPosition)
+    public void OnClick(Vector2 clickPosition, PikedTool pikedTool)
     {
-        if(isFinal)
+        if(isFinal || pikedTool != pikedTool1)
         {
             return;
         }

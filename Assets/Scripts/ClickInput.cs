@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class ClickInput : MonoBehaviour
 {
-    public LayerGridController layerGridController;
+    public ToolSelecter toolSelecter;
+    public LayersSequence layersSequence;
     void Start()
     {
         
@@ -15,11 +16,11 @@ public class ClickInput : MonoBehaviour
     {
         if(Mouse.current.leftButton.isPressed == true || Mouse.current.leftButton.wasPressedThisFrame == true)
         {
-            layerGridController.OnClick(Mouse.current.position.ReadValue());
+            layersSequence.GetCurrentLayer().OnClick(Mouse.current.position.ReadValue(), toolSelecter.GetPikedTool());
         }
         else
         {
-            layerGridController.HideBrush();
+            layersSequence.GetCurrentLayer().HideBrush();
         }
     }
 }
