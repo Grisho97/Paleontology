@@ -6,6 +6,7 @@ namespace Paleontology.Student
     public class StudentSoilGrid : MonoBehaviour
     {
         [SerializeField] RectTransform cellsRoot;
+        [SerializeField] DigTool requiredTool = DigTool.Shovel;
         [SerializeField, Min(0f), Tooltip("Радиус очистки в экранных пикселях.")]
         float digRadius = 90f;
         [SerializeField, Range(1, 100)] int autoClearPercent = 85;
@@ -17,6 +18,7 @@ namespace Paleontology.Student
         public int Total => cells.Length;
         public float Progress => (float)removed / cells.Length;
         public bool Completed => removed == cells.Length;
+        public DigTool RequiredTool => requiredTool;
         public void Configure(RectTransform root, RectTransform indicatorPrefab)
         {
             cellsRoot = root;
@@ -34,8 +36,14 @@ namespace Paleontology.Student
             }
         }
 
-        public void EraseAt(Vector2 screenPosition)
+        public void EraseAt(Vector2 screenPosition, DigTool selectedTool)
         {
+            if (selectedTool == DigTool.None || selectedTool != requiredTool || Completed)
+            {
+                HideBrush();
+                return;
+            }
+
             ShowBrush(screenPosition);
 
             foreach (RawImage cell in cells)
@@ -57,6 +65,8 @@ namespace Paleontology.Student
                 foreach (RawImage cell in cells) cell.gameObject.SetActive(false);
                 removed = Total;
             }
+
+            if (Completed) HideBrush();
         }
 
         void ShowBrush(Vector2 screenPosition)
@@ -78,6 +88,7 @@ namespace Paleontology.Student
 
         public void ResetGrid()
         {
+            HideBrush();
             foreach (RawImage cell in cells) cell.gameObject.SetActive(true);
             removed = 0;
         }

@@ -5,17 +5,29 @@ namespace Paleontology.Student
 {
     public class StudentDigHUD : MonoBehaviour
     {
-        [SerializeField] StudentSoilGrid grid;
-        [SerializeField] StudentDigInput input;
+        [SerializeField] StudentLayerSequence sequence;
         [SerializeField] Text status;
         [SerializeField] Button reset;
-        public void Configure(StudentSoilGrid target, StudentDigInput controls, Text label, Button button)
-        { grid = target; input = controls; status = label; reset = button; }
-        void Start() { reset.onClick.AddListener(() => { grid.ResetGrid(); }); }
+        public void Configure(StudentLayerSequence target, Text label, Button button)
+        { sequence = target; status = label; reset = button; }
+        void Start() { reset.onClick.AddListener(sequence.ResetLayers); }
         void Update()
         {
-            status.text = $"Убрано: {grid.Removed} / {grid.Total}\nОчищено: {grid.Progress:P0}";
-            if (grid.Completed) status.text += "\n\nСлой очищен!";
+            StudentSoilGrid grid = sequence.CurrentLayer;
+            if (grid == null)
+            {
+                status.text = "Раскопка завершена!";
+                return;
+            }
+
+            string toolName = grid.RequiredTool switch
+            {
+                DigTool.Shovel => "лопата",
+                DigTool.Pickaxe => "кирка",
+                DigTool.Brush => "кисточка",
+                _ => "—"
+            };
+            status.text = $"Инструмент: {toolName}\nУбрано: {grid.Removed} / {grid.Total}\nОчищено: {grid.Progress:P0}";
         }
     }
 }

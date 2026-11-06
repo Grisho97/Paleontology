@@ -1,25 +1,31 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Paleontology.Student
 {
     public class StudentDigInput : MonoBehaviour
     {
-        [SerializeField] StudentSoilGrid grid;
-        public void Configure(StudentSoilGrid target) { grid = target; }
+        [SerializeField] StudentLayerSequence sequence;
+        [SerializeField] StudentToolSelection toolSelection;
+
+        public void Configure(StudentLayerSequence target, StudentToolSelection selection)
+        {
+            sequence = target;
+            toolSelection = selection;
+        }
 
         void Update()
         {
-            // На следующем занятии обрабатываем только один палец или мышь.
-            var touch = Touchscreen.current?.primaryTouch;
-            if (touch != null && (touch.press.isPressed || touch.press.wasPressedThisFrame))
+            StudentSoilGrid grid = sequence.CurrentLayer;
+            if (grid == null) return;
+
+            var mouse = Mouse.current;
+            bool overUi = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+            if (mouse != null && !overUi &&
+                (mouse.leftButton.isPressed || mouse.leftButton.wasPressedThisFrame))
             {
-                grid.EraseAt(touch.position.ReadValue());
-            }
-            else if (Mouse.current != null &&
-                     (Mouse.current.leftButton.isPressed || Mouse.current.leftButton.wasPressedThisFrame))
-            {
-                grid.EraseAt(Mouse.current.position.ReadValue());
+                grid.EraseAt(mouse.position.ReadValue(), toolSelection.SelectedTool);
             }
             else
             {
@@ -29,7 +35,8 @@ namespace Paleontology.Student
 
         void OnDisable()
         {
-            if (grid != null) grid.HideBrush();
+            if (sequence != null && sequence.CurrentLayer != null)
+                sequence.CurrentLayer.HideBrush();
         }
     }
 }
