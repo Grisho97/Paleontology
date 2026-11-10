@@ -41,6 +41,7 @@ public class LayerGridController : MonoBehaviour
                 raw.gameObject.SetActive(false);
                 isFinal = true;
             }
+            HideBrush();
             Debug.Log("final");
         }
     }
