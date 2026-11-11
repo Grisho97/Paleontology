@@ -14,7 +14,7 @@ public class LayerGridController : MonoBehaviour
     RectTransform rawsParent;
     [SerializeField]
     PikedTool pikedTool1;
-    RectTransform brush = new RectTransform();
+    RectTransform brush;
     public bool isFinal = false;
     private int removedRawsCount = 0;
     public RawImage[] raws;
@@ -67,7 +67,7 @@ public class LayerGridController : MonoBehaviour
         }
         CheckFinal();
     }
-    void Start()
+    void Awake()
     {
         raws = gameObject.GetComponentsInChildren<RawImage>(true);
         if(brushPrefab != null)
