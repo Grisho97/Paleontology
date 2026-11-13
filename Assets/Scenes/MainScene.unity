@@ -806,6 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85d05c58cd60da45b038a35062e4430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoneMover
+  matchRadius: 60
 --- !u!1 &555024364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1125443755}
+  - component: {fileID: 1125443756}
   m_Layer: 5
   m_Name: ConnectPoint
   m_TagString: Untagged
@@ -1184,6 +1186,20 @@ RectTransform:
   m_AnchoredPosition: {x: -93, y: 86}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1125443756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125443754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af98227fa0d95bc4dbff9e5b55c79d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoneConnector
+  matchigPoint: {fileID: 1332721635}
+  parentBone: {fileID: 1450477990}
 --- !u!1 &1137852376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1332721634}
+  - component: {fileID: 1332721635}
   m_Layer: 5
   m_Name: ConnectPoint
   m_TagString: Untagged
@@ -1411,6 +1428,20 @@ RectTransform:
   m_AnchoredPosition: {x: -99, y: -0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1332721635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332721633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af98227fa0d95bc4dbff9e5b55c79d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoneConnector
+  matchigPoint: {fileID: 1125443756}
+  parentBone: {fileID: 504157697}
 --- !u!1 &1392575497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,7 +1467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392575497}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1670,6 +1701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85d05c58cd60da45b038a35062e4430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoneMover
+  matchRadius: 60
 --- !u!1 &1507601936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1611664355318662965, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
@@ -1841,9 +1873,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 23634100}
   - {fileID: 292878819}
   - {fileID: 992526430}
-  - {fileID: 23634100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
