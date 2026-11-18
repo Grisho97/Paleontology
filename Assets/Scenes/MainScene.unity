@@ -807,6 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoneMover
   matchRadius: 60
+  connectedPuzzlePeaces: []
 --- !u!1 &555024364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -99, y: -0}
+  m_AnchoredPosition: {x: 120, y: -0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1332721635
@@ -1702,6 +1703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoneMover
   matchRadius: 60
+  connectedPuzzlePeaces: []
 --- !u!1 &1507601936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1611664355318662965, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}

@@ -23,7 +23,7 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             BoneMover secondBone = secondPoint.parentBone;
             Vector2 distance = conection.transform.position - secondPoint.transform.position;
             Vector2 boardDistanse = boardSize.InverseTransformVector(distance);
-            if(boardDistanse.magnitude > matchRadius)
+            if(boardDistanse.magnitude > matchRadius || connectedPuzzlePeaces == secondBone.connectedPuzzlePeaces)
             continue;
             secondBone.MoveBones(boardDistanse);
             connectedPuzzlePeaces.AddRange(secondBone.connectedPuzzlePeaces);
