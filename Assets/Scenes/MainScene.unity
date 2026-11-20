@@ -413,11 +413,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109671807}
   m_CullTransparentMesh: 1
---- !u!1 &199910267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1611664355318662965, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
-  m_PrefabInstance: {fileID: 1403097780}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &234738115
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +802,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoneMover
   matchRadius: 60
-  connectedPuzzlePeaces: []
 --- !u!1 &555024364
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +889,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoilGrid
       objectReference: {fileID: 0}
+    - target: {fileID: 1611664355318662965, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075042956973769754, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075042956973769754, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075042956973769754, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075042956973769754, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4172781918821773822, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -978,10 +992,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1611664355318662965, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1507601938}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
 --- !u!1001 &598058820
 PrefabInstance:
@@ -994,6 +1005,10 @@ PrefabInstance:
     - target: {fileID: 1611664355318662965, guid: ac5e3e07ac2946118b4aabc7897b0df3, type: 3}
       propertyPath: m_Name
       value: HardRockLayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611664355318662965, guid: ac5e3e07ac2946118b4aabc7897b0df3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4172781918821773822, guid: ac5e3e07ac2946118b4aabc7897b0df3, type: 3}
       propertyPath: m_Pivot.x
@@ -1075,14 +1090,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3198057246301975229, guid: ac5e3e07ac2946118b4aabc7897b0df3, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1611664355318662965, guid: ac5e3e07ac2946118b4aabc7897b0df3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1172964546}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac5e3e07ac2946118b4aabc7897b0df3, type: 3}
 --- !u!224 &598058821 stripped
 RectTransform:
@@ -1255,7 +1266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1171885645
 Transform:
   m_ObjectHideFlags: 0
@@ -1322,30 +1333,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1500, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1172964545 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1611664355318662965, guid: ac5e3e07ac2946118b4aabc7897b0df3, type: 3}
+--- !u!114 &1172964546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1067059825099343864, guid: ac5e3e07ac2946118b4aabc7897b0df3, type: 3}
   m_PrefabInstance: {fileID: 598058820}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1172964546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172964545}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d349927686fb030418e0bbff3d57afa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LayerGridController
-  radius: 100
-  autoClearPercent: 75
-  brushPrefab: {fileID: 2054115926571426540, guid: a45f0a08928b4fb89575ca479b72034c, type: 3}
-  rawsParent: {fileID: 598058821}
-  pikedTool1: 3
-  isFinal: 0
-  raws: []
 --- !u!1 &1238140531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,7 +1360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1238140532
 Transform:
   m_ObjectHideFlags: 0
@@ -1459,7 +1457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1392575498
 Transform:
   m_ObjectHideFlags: 0
@@ -1502,6 +1500,10 @@ PrefabInstance:
     - target: {fileID: 1611664355318662965, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
       propertyPath: m_Name
       value: BoneMatrixLayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611664355318662965, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4172781918821773822, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
       propertyPath: m_Pivot.x
@@ -1583,39 +1585,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3198057246301975229, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1611664355318662965, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1403097782}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
 --- !u!224 &1403097781 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4172781918821773822, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
   m_PrefabInstance: {fileID: 1403097780}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1403097782
+--- !u!114 &1403097782 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 427182021263765454, guid: 2b825c2dc6f74065a8cd9d815c3a5e42, type: 3}
+  m_PrefabInstance: {fileID: 1403097780}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199910267}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d349927686fb030418e0bbff3d57afa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LayerGridController
-  radius: 100
-  autoClearPercent: 75
-  brushPrefab: {fileID: 2054115926571426540, guid: a45f0a08928b4fb89575ca479b72034c, type: 3}
-  rawsParent: {fileID: 1403097781}
-  pikedTool1: 1
-  isFinal: 0
-  raws: []
 --- !u!1 &1450477986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,36 +1693,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoneMover
   matchRadius: 60
-  connectedPuzzlePeaces: []
---- !u!1 &1507601936 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1611664355318662965, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
-  m_PrefabInstance: {fileID: 584225783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1507601937 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4172781918821773822, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
   m_PrefabInstance: {fileID: 584225783}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1507601938
+--- !u!114 &1507601938 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1761161610314501121, guid: d5730e6ae3894bcfa01b318be497a97f, type: 3}
+  m_PrefabInstance: {fileID: 584225783}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507601936}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d349927686fb030418e0bbff3d57afa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LayerGridController
-  radius: 100
-  autoClearPercent: 75
-  brushPrefab: {fileID: 2054115926571426540, guid: a45f0a08928b4fb89575ca479b72034c, type: 3}
-  rawsParent: {fileID: 1507601937}
-  pikedTool1: 2
-  isFinal: 0
-  raws: []
 --- !u!1 &1602072473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,7 +1725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1602072474
 Transform:
   m_ObjectHideFlags: 0
@@ -2728,6 +2704,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 905767254519493128, guid: 94664d9e443897f45a65884253b9838a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6681407575961084030, guid: b7aa7cbaa01e63e459fa28c24d6266b3, type: 3}
     - target: {fileID: 5353767185044652216, guid: 94664d9e443897f45a65884253b9838a, type: 3}
       propertyPath: m_Name
       value: Enviroment
