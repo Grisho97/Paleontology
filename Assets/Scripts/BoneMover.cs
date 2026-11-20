@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    [SerializeField]
+    PuzzleFinishController puzzleFinishController;
     BoneConnector[] boneConnectors;
     RectTransform boardSize;
     [SerializeField]
@@ -31,6 +33,8 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             {
                 bone.connectedPuzzlePeaces = connectedPuzzlePeaces;
             }
+            secondBone.pointerID = null;
+            puzzleFinishController.IsPuzzleFinished(bone1.connectedPuzzlePeaces.Count);
             return;
         }
         }
@@ -42,14 +46,22 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             bone.currentPuzzlePeace.localPosition += (Vector3)delta;
         }
     }
-      bool IsCenterInsideBoard(Vector2 localPos)
+      bool IsCentersInsideBoard(Vector2 delta)
     {
         Rect boardRect = boardSize.rect;
-        return boardRect.Contains(localPos);
+        foreach(BoneMover bone in connectedPuzzlePeaces)
+        {
+            if(boardRect.Contains(bone.currentPuzzlePeace.localPosition + (Vector3)delta))
+            {
+                continue;
+            }
+            return false;
+        }
+        return true;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(eventData.button != PointerEventData.InputButton.Left || pointerID != null)
+        if(eventData.button != PointerEventData.InputButton.Left || pointerID != null || puzzleFinishController.isCanMove != true)
         return;
         pointerID = eventData.pointerId;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(boardSize, eventData.pressPosition, eventData.pressEventCamera, out Vector2 localPoint);
@@ -62,8 +74,9 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         return;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(boardSize, eventData.position, eventData.pressEventCamera, out Vector2 localPoint);
         Vector2 delta = localPoint +  offset - (Vector2)currentPuzzlePeace.localPosition;
-        if(IsCenterInsideBoard(localPoint + offset))
+        if(IsCentersInsideBoard(delta))
         MoveBones(delta);
+        if(puzzleFinishController.isFinished == false)
         TryMatch();
     }
 
