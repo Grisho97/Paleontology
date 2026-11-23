@@ -8,6 +8,10 @@ public class StartScreenContntroller : MonoBehaviour
     [SerializeField]
     GameObject startScreen;
     [SerializeField]
+    GameObject layers;
+    [SerializeField]
+    GameObject bonePuzzleScreen;
+    [SerializeField]
     GameObject gameInterface;
     IEnumerator DelayedDisapereance()
     {
@@ -22,6 +26,8 @@ public class StartScreenContntroller : MonoBehaviour
     public void DisableStartScreen()
     {
         gameInterface.SetActive(true);
+        bonePuzzleScreen.SetActive(true);
+        layers.SetActive(true);
         startScreen.GetComponent<Animator>().SetTrigger("Trigger");
         gameInterface.GetComponent<Animator>().SetTrigger("Trigger2");
         StartCoroutine(DelayedDisapereance());
