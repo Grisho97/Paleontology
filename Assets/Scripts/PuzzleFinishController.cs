@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class PuzzleFinishController : MonoBehaviour
 {
-    [SerializeField]
-    LayersSequence layersSequence;
-    public bool isFinished{get; private set;} = false;
-    public bool isCanMove => layersSequence.IsEveryLayerFinal();
+    public bool isFinished = false;
+    public bool isCanMove = false;
     [SerializeField]
     int totalBones;
     public void IsPuzzleFinished(int connectedBones)

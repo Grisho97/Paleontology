@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class LayerGridController : MonoBehaviour
     public bool isFinal = false;
     private int removedRawsCount = 0;
     public RawImage[] raws;
+    public event Action LayerFinished;
     public void HideBrush()
     {
         brush.gameObject.SetActive(false);
@@ -43,6 +45,7 @@ public class LayerGridController : MonoBehaviour
             }
             HideBrush();
             Debug.Log("final");
+            LayerFinished.Invoke();
         }
     }
     public void OnClick(Vector2 clickPosition, PikedTool pikedTool)
