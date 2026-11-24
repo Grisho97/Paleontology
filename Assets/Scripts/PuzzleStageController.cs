@@ -13,13 +13,13 @@ public class PuzzleStageController : MonoBehaviour
     {
         
     }
-    void Start()
+    void OnEnable()
     {
-        
+        puzzleFinishController.PuzzleStageFinal += End;
     }
 
-    void Update()
+    void OnDisable()
     {
-        
+        puzzleFinishController.PuzzleStageFinal -= End;
     }
 }

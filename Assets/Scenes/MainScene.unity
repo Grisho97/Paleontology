@@ -803,6 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoneMover
   puzzleFinishController: {fileID: 1808747405}
   matchRadius: 60
+  connectedPuzzlePeaces: []
 --- !u!1 &555024364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,6 +2092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoneMover
   puzzleFinishController: {fileID: 1808747405}
   matchRadius: 60
+  connectedPuzzlePeaces: []
 --- !u!1 &1506785099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,6 +2848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c00053e277d3d54893a3769c3ed559d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleFinishController
+  boneMover: {fileID: 1518622985}
   isFinished: 0
   isCanMove: 0
   totalBones: 5

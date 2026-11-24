@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,10 +12,11 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     RectTransform boardSize;
     [SerializeField]
     float matchRadius = 60f;
-    List<BoneMover> connectedPuzzlePeaces = new();
+    public List<BoneMover> connectedPuzzlePeaces = new();
     RectTransform currentPuzzlePeace;
     Vector2 offset;
     int? pointerID;
+    public event Action AnyBoneConnected;
     void TryMatch()
     {
         foreach(BoneMover bone1 in connectedPuzzlePeaces)
@@ -35,6 +37,7 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             }
             secondBone.pointerID = null;
             puzzleFinishController.IsPuzzleFinished(bone1.connectedPuzzlePeaces.Count);
+            AnyBoneConnected.Invoke();
             return;
         }
         }
