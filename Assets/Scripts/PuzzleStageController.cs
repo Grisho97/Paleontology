@@ -3,23 +3,23 @@ using UnityEngine;
 public class PuzzleStageController : MonoBehaviour
 {
     [SerializeField]
-    PuzzleFinishController puzzleFinishController;
+    BonesHolder bonesHolder;
     public void Begin()
     {
-        puzzleFinishController.isCanMove = true;
-        puzzleFinishController.isFinished = false;
+        bonesHolder.InitializeFields();
     }
     public void End()
     {
-        
+        bonesHolder.isFinished = true;
+        Debug.Log("Puzzle finished");
     }
     void OnEnable()
     {
-        puzzleFinishController.PuzzleStageFinal += End;
+        bonesHolder.PuzzleStageFinal += End;
     }
 
     void OnDisable()
     {
-        puzzleFinishController.PuzzleStageFinal -= End;
+        bonesHolder.PuzzleStageFinal -= End;
     }
 }

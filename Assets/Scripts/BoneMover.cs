@@ -6,17 +6,24 @@ using UnityEngine.EventSystems;
 
 public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    [SerializeField]
-    PuzzleFinishController puzzleFinishController;
     BoneConnector[] boneConnectors;
     RectTransform boardSize;
-    [SerializeField]
-    float matchRadius = 60f;
+    public float matchRadiusLocal = 60f;
     public List<BoneMover> connectedPuzzlePeaces = new();
     RectTransform currentPuzzlePeace;
     Vector2 offset;
     int? pointerID;
-    public event Action AnyBoneConnected;
+    bool isCanMove;
+    bool isFinished;
+    public event Action<int> AnyBoneConnected;
+    public void SetIsCanMove(bool value)
+    {
+        isCanMove = value;
+    }
+    public void SetIsFinished(bool value)
+    {
+        isFinished = value;
+    }
     void TryMatch()
     {
         foreach(BoneMover bone1 in connectedPuzzlePeaces)
@@ -27,7 +34,7 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             BoneMover secondBone = secondPoint.parentBone;
             Vector2 distance = conection.transform.position - secondPoint.transform.position;
             Vector2 boardDistanse = boardSize.InverseTransformVector(distance);
-            if(boardDistanse.magnitude > matchRadius || connectedPuzzlePeaces == secondBone.connectedPuzzlePeaces)
+            if(boardDistanse.magnitude > matchRadiusLocal || connectedPuzzlePeaces == secondBone.connectedPuzzlePeaces)
             continue;
             secondBone.MoveBones(boardDistanse);
             connectedPuzzlePeaces.AddRange(secondBone.connectedPuzzlePeaces);
@@ -36,8 +43,7 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 bone.connectedPuzzlePeaces = connectedPuzzlePeaces;
             }
             secondBone.pointerID = null;
-            puzzleFinishController.IsPuzzleFinished(bone1.connectedPuzzlePeaces.Count);
-            AnyBoneConnected.Invoke();
+            AnyBoneConnected.Invoke(bone1.connectedPuzzlePeaces.Count);
             return;
         }
         }
@@ -64,7 +70,7 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(eventData.button != PointerEventData.InputButton.Left || pointerID != null || puzzleFinishController.isCanMove != true)
+        if(eventData.button != PointerEventData.InputButton.Left || pointerID != null || isCanMove != true)
         return;
         pointerID = eventData.pointerId;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(boardSize, eventData.pressPosition, eventData.pressEventCamera, out Vector2 localPoint);
@@ -79,7 +85,7 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         Vector2 delta = localPoint +  offset - (Vector2)currentPuzzlePeace.localPosition;
         if(IsCentersInsideBoard(delta))
         MoveBones(delta);
-        if(puzzleFinishController.isFinished == false)
+        if(isFinished == false)
         TryMatch();
     }
 
@@ -97,8 +103,10 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         boardSize = (RectTransform)this.transform.parent;
     }
 
-    void Update()
+    void OnEnable()
     {
-        
+    }
+    void OnDisable()
+    {
     }
 }

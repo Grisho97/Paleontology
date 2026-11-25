@@ -1,18 +1,18 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartScreenContntroller : MonoBehaviour
 {
     [SerializeField]
+    Button startGameButton;
+    [SerializeField]
     bool anableWaitMode;
     [SerializeField]
     GameObject startScreen;
-    [SerializeField]
-    GameObject layers;
-    [SerializeField]
-    GameObject bonePuzzleScreen;
-    [SerializeField]
-    GameObject gameInterface;
+    public event Action StartScreenStageEnded;
     IEnumerator DelayedDisapereance()
     {
         yield return new WaitForSeconds(0.75f);
@@ -25,18 +25,22 @@ public class StartScreenContntroller : MonoBehaviour
     }
     public void DisableStartScreen()
     {
-        gameInterface.SetActive(true);
-        bonePuzzleScreen.SetActive(true);
-        layers.SetActive(true);
-        startScreen.GetComponent<Animator>().SetTrigger("Trigger");
-        gameInterface.GetComponent<Animator>().SetTrigger("Trigger2");
-        StartCoroutine(DelayedDisapereance());
         if(anableWaitMode)
         StartCoroutine(AnableStartScreen());
     }
-    void Start()
+    public void Begin()
     {
         startScreen.SetActive(true);
+    }
+    void End()
+    {
+        startScreen.GetComponent<Animator>().SetTrigger("Trigger");
+        StartCoroutine(DelayedDisapereance());
+        StartScreenStageEnded.Invoke();
+    }
+    void Awake()
+    {
+        startGameButton.onClick.AddListener(() => End());
     }
 
     void Update()

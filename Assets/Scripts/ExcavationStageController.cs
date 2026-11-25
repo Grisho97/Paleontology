@@ -4,6 +4,10 @@ using UnityEngine;
 public class ExcavationStageController : MonoBehaviour
 {
     [SerializeField]
+    GameObject bonePuzzleScreen;
+    [SerializeField]
+    GameObject gameInterface;
+    [SerializeField]
     ClickInput clickInput;
     [SerializeField]
     LayersSequence layersSequence;
@@ -12,6 +16,9 @@ public class ExcavationStageController : MonoBehaviour
     public event Action ExcavationStageFinal;
     public void Begin()
     {
+        gameInterface.SetActive(true);
+        bonePuzzleScreen.SetActive(true);
+        gameInterface.GetComponent<Animator>().SetTrigger("Trigger2");
         clickInput.enabled = true;
         layersSequence.enabled = true;
         toolSelecter.enabled = true;

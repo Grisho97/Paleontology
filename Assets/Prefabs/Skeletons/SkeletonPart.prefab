@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6337162943344514359}
   - component: {fileID: 6939495150913230629}
   m_Layer: 5
-  m_Name: MammothPart
+  m_Name: SkeletonPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
