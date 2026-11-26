@@ -100,7 +100,7 @@ public class BoneMover : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         connectedPuzzlePeaces.Add(this);
         boneConnectors = gameObject.GetComponentsInChildren<BoneConnector>();
         currentPuzzlePeace = (RectTransform)this.transform;
-        boardSize = (RectTransform)this.transform.parent;
+        boardSize = (RectTransform)this.transform.parent.parent;
     }
 
     void OnEnable()
